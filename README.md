@@ -178,9 +178,7 @@ Both these settings can be configured according to the specific requirement of y
 
 ---
 
-YouTube
-
-## Competing Consumers
+## Competing Consumers Pattern
 
 The Competing Consumers design pattern in RabbitMQ allows multiple consumers to process messages from one queue simultaneously, distributing the load for parallel processing and improved speed. In this setup, RabbitMQ uses round-robin scheduling, ensuring each consumer processes a unique message. If a consumer fails, acknowledgements and negative acknowledgements permit the message to return to the queue for processing by others. This pattern boosts throughput and parallel processing in RabbitMQ.
 
