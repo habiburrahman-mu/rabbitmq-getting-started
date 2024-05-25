@@ -14,7 +14,17 @@ channel.QueueDeclare(
     arguments: null
     );
 
-var message = "This is my first Message";
-var body = Encoding.UTF8.GetBytes(message);
-channel.BasicPublish(exchange: "", routingKey: "letterbox", body: body);
-Console.WriteLine($"Message {message} published.");
+var random = new Random();
+var messageId = 1;
+
+while (true)
+{
+    var publishingTime = random.Next(1, 4);
+    var message = $"Sending MessageId: {messageId}";
+    var body = Encoding.UTF8.GetBytes(message);
+    channel.BasicPublish(exchange: "", routingKey: "letterbox", body: body);
+    Console.WriteLine($"Message {message} published.");
+    Task.Delay(TimeSpan.FromSeconds(publishingTime)).Wait();
+    messageId += 1;
+}
+
