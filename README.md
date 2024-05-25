@@ -183,3 +183,11 @@ YouTube
 ## Competing Consumers
 
 The Competing Consumers design pattern in RabbitMQ allows multiple consumers to process messages from one queue simultaneously, distributing the load for parallel processing and improved speed. In this setup, RabbitMQ uses round-robin scheduling, ensuring each consumer processes a unique message. If a consumer fails, acknowledgements and negative acknowledgements permit the message to return to the queue for processing by others. This pattern boosts throughput and parallel processing in RabbitMQ.
+
+### RabbitMQ Prefetch Count
+
+The RabbitMQ prefetch value is used to specify how many messages are being sent at the same time.
+
+```csharp
+channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
+```
