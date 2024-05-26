@@ -1,5 +1,8 @@
 # RabbitMq Getting Started Notes
 
+Go to this specific branch to see the examples:
+[Competing Consumer](/tree/competing-consumer)
+
 ## Some common terminologies
 
 - Publisher
