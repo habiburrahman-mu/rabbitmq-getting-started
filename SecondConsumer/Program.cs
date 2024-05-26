@@ -27,5 +27,5 @@ void OnReceivedMessage(object? sender, BasicDeliverEventArgs ea)
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
-    Console.WriteLine($" [x] First Consumer Received {message}");
+    Console.WriteLine($" [x] Second Consumer Received {message}");
 }
