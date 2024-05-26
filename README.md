@@ -1,7 +1,9 @@
 # RabbitMq Getting Started Notes
 
 Go to this specific branch to see the examples:
-[Competing Consumer](/tree/competing-consumer)
+
+- [Competing Consumer](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/competing-consumer)
+- [Pub Sub](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/pub-sub)
 
 ## Some common terminologies
 
@@ -17,9 +19,9 @@ RabbitMq uses these protocols
 - AMQP 1-0
 - MQTT
 - STOMP
-    
+
     These are actually the application layer protocols
-    
+
 
 TLS is a presentation layer protocol.
 
