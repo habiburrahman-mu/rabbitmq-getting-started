@@ -83,6 +83,14 @@ Brains behind RabbitMQ. It can be of various types.
     - If a message can't be routed to any queue (i.e., if there are no queues bound to the exchange, or none match the routing key), it can be sent to an AE.
     - This provides a safety net for messages that can't be routed properly.
 
+### Routing Key
+
+The routing key is a message attribute. The exchange might look at this key when deciding how to route the message to queues (depending on exchange type). The routing key is like an address for the message.
+
+### Binding
+
+The relationship between a exchange and a queue is Binding.
+
 ## Publish
 
 → Requires one tcp packet and acknowledgement.
@@ -189,3 +197,11 @@ The RabbitMQ prefetch value is used to specify how many messages are being sent 
 ```csharp
 channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 ```
+
+## Pub-Sub Design Pattern
+
+- Send message to multiple consumers
+- We can use fanout exchange for this purpose
+- bind queues to this fanout exchange
+- all queues of fanout exchange will get these messages
+
