@@ -204,4 +204,13 @@ channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 - We can use fanout exchange for this purpose
 - bind queues to this fanout exchange
 - all queues of fanout exchange will get these messages
-
+- Producer does not need to define or know about the queues, it will interact with the exchange
+    
+    ```csharp
+    channel.ExchangeDeclare(exchange: "pubsub", type: ExchangeType.Fanout);
+    
+    // consumer
+    var queueName = channel.QueueDeclare().QueueName;
+    var consumer = new EventingBasicConsumer(channel);
+    channel.QueueBind(queueName, exchange: "pubsub", routingKey: "");
+    ```
