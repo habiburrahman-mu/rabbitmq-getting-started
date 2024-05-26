@@ -6,32 +6,26 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
-channel.QueueDeclare(queue: "letterbox",
-    durable: false,
-    exclusive: false,
-    autoDelete: false,
-    arguments: null);
+channel.ExchangeDeclare(
+    exchange: "pubsub",
+    type: ExchangeType.Fanout);
 
-channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
+var queueName = channel.QueueDeclare().QueueName;
 
 Console.WriteLine(" [*] Waiting for message");
 var consumer = new EventingBasicConsumer(channel);
 
-var random = new Random();
+channel.QueueBind(queueName, exchange: "pubsub", routingKey: "");
 
 consumer.Received += OnReceivedMessage;
 
-channel.BasicConsume(queue: "letterbox", autoAck: false, consumer: consumer);
-Console.WriteLine("Consuming");
-Console.ReadKey();
+channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
 
+Console.ReadKey();
 
 void OnReceivedMessage(object? sender, BasicDeliverEventArgs ea)
 {
-    var processingTime = random.Next(1, 6);
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
-    Console.WriteLine($" [x] Received {message}");
-    Task.Delay(TimeSpan.FromSeconds(processingTime)).Wait();
-    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+    Console.WriteLine($" [x] First Consumer Received {message}");
 }
