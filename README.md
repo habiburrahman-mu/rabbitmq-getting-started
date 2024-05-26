@@ -219,3 +219,14 @@ channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
     var consumer = new EventingBasicConsumer(channel);
     channel.QueueBind(queueName, exchange: "pubsub", routingKey: "");
     ```
+
+## Routing
+
+**Direct Exchange:**
+
+- Multiple queues can be bound to the single direct exchange using the same binding keys.
+- Single queue can also have multiple bindings.
+
+![analytics has multiple bindings](docs-assets/direc-exchnage-mutiple-bindings.png)
+
+analytics has multiple bindings.
