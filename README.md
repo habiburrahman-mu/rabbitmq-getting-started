@@ -4,6 +4,7 @@ Go to this specific branch to see the examples:
 
 - [Competing Consumer](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/competing-consumer)
 - [Pub Sub](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/pub-sub)
+- [Routing](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/routing)
 
 ## Some common terminologies
 
