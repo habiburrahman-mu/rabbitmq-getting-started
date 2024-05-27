@@ -230,3 +230,20 @@ channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 ![analytics has multiple bindings](docs-assets/direc-exchnage-mutiple-bindings.png)
 
 analytics has multiple bindings.
+**Topic Exchange:**
+
+- Real power of the topic exchange coming from using the special wildcard characters that are supported when adding binding keys.
+  - we can use start (*) character to substitute for exactly one word
+  - we can use hash (#) character to substitute for zero or more words
+
+![topic-exchange-star.png](docs-assets/topic-exchange-star.png)
+
+- **Star (*) wildcard:**
+  - `user.europe.*` *binding key* means queue wants to receive any message that begins with `user.europe` and then ends in one word.
+  - `*.europe.purchases` this means queue wants to receive any message with start of word and ends with `eurpoe.purchaes` .
+  - `*.europe.*` any message with middle in `europe`.
+
+![topic-exchange-hash.png](docs-assets/topic-exchange-hash.png)
+
+- **Hash Wildcard (#):**
+  - queues with binding key `user.#` receives messages that begins with `user` and it doesn’t matter what else comes after it. Anything up to the maximum of 255 bytes.
