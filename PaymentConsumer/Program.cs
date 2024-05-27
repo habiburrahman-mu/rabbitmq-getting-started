@@ -7,15 +7,17 @@ using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
 channel.ExchangeDeclare(
-    exchange: "pubsub",
-    type: ExchangeType.Fanout);
+    exchange: "routing-exchange",
+    type: ExchangeType.Direct);
 
 var queueName = channel.QueueDeclare().QueueName;
 
-Console.WriteLine(" [*] Waiting for message");
-var consumer = new EventingBasicConsumer(channel);
+channel.QueueBind(
+    queue: queueName,
+    exchange: "routing-exchange",
+    routingKey: "payments-only");
 
-channel.QueueBind(queueName, exchange: "pubsub", routingKey: "");
+var consumer = new EventingBasicConsumer(channel);
 
 consumer.Received += OnReceivedMessage;
 
@@ -27,5 +29,5 @@ void OnReceivedMessage(object? sender, BasicDeliverEventArgs ea)
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
-    Console.WriteLine($" [x] First Consumer Received {message}");
+    Console.WriteLine($" [x] Payment Consumer Received {message}");
 }
