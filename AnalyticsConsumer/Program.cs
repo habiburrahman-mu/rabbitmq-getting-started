@@ -6,16 +6,20 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
+const string ExchangeName = "routing-topic-exchange";
+
 channel.ExchangeDeclare(
-    exchange: "pubsub",
-    type: ExchangeType.Fanout);
+    exchange: ExchangeName,
+    type: ExchangeType.Topic);
 
 var queueName = channel.QueueDeclare().QueueName;
 
-Console.WriteLine(" [*] Waiting for message");
-var consumer = new EventingBasicConsumer(channel);
+channel.QueueBind(
+    queue: queueName,
+    exchange: ExchangeName,
+    routingKey: "*.europe.*"); // any message with <any-word>.europe.<anyword>
 
-channel.QueueBind(queueName, exchange: "pubsub", routingKey: "");
+var consumer = new EventingBasicConsumer(channel);
 
 consumer.Received += OnReceivedMessage;
 
@@ -27,5 +31,5 @@ void OnReceivedMessage(object? sender, BasicDeliverEventArgs ea)
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
-    Console.WriteLine($" [x] First Consumer Received {message}");
+    Console.WriteLine($" [x] Analytic Consumer Received {message}");
 }
