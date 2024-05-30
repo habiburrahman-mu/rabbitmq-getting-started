@@ -17,11 +17,18 @@ var id = 0;
 
 while (true)
 {
-    var message = $"Hello I want to broadcast this message with {id}";
+    var userPaymentsMessage = $"An European user paid something with {id}";
 
-    var body = Encoding.UTF8.GetBytes(message);
-    channel.BasicPublish(exchange: "routing-exchange", routingKey: "both", body: body);
-    Console.WriteLine($"Published: {message}");
+    var userPaymentsMessageBody = Encoding.UTF8.GetBytes(userPaymentsMessage);
+    channel.BasicPublish(exchange: ExchangeName, routingKey: "user.europe.payments", body: userPaymentsMessageBody);
+    Console.WriteLine($"Published: {userPaymentsMessage}");
+
+    var businessOrderMessage = $"An European business ordered goods with {id}";
+
+    var businessOrderMessageBody = Encoding.UTF8.GetBytes(businessOrderMessage);
+    channel.BasicPublish(exchange: ExchangeName, routingKey: "business.europe.order", body: businessOrderMessageBody);
+    Console.WriteLine($"Published: {businessOrderMessage}");
+
     id++;
     Task.Delay(2000).Wait();
 }
