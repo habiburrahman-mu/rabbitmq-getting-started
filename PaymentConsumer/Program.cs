@@ -17,6 +17,11 @@ channel.QueueBind(
     exchange: "routing-exchange",
     routingKey: "payments-only");
 
+channel.QueueBind(
+    queue: queueName,
+    exchange: "routing-exchange",
+    routingKey: "both");
+
 var consumer = new EventingBasicConsumer(channel);
 
 consumer.Received += OnReceivedMessage;

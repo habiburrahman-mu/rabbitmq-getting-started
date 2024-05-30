@@ -17,7 +17,7 @@ while (true)
     var message = $"Hello I want to broadcast this message with {id}";
 
     var body = Encoding.UTF8.GetBytes(message);
-    channel.BasicPublish(exchange: "routing-exchange", routingKey: "analytics-only", body: body);
+    channel.BasicPublish(exchange: "routing-exchange", routingKey: "both", body: body);
     Console.WriteLine($"Published: {message}");
     id++;
     Task.Delay(2000).Wait();
