@@ -6,21 +6,18 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
+const string ExchangeName = "routing-topic-exchange";
+
 channel.ExchangeDeclare(
-    exchange: "routing-exchange",
-    type: ExchangeType.Direct);
+    exchange: ExchangeName,
+    type: ExchangeType.Topic);
 
 var queueName = channel.QueueDeclare().QueueName;
 
 channel.QueueBind(
     queue: queueName,
-    exchange: "routing-exchange",
-    routingKey: "payments-only");
-
-channel.QueueBind(
-    queue: queueName,
-    exchange: "routing-exchange",
-    routingKey: "both");
+    exchange: ExchangeName,
+    routingKey: "#.payments"); // accepts message with end 'payments'
 
 var consumer = new EventingBasicConsumer(channel);
 
