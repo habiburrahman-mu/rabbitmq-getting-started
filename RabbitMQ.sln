@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentConsumer", "PaymentC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyticsConsumer", "AnalyticsConsumer\AnalyticsConsumer.csproj", "{02A61565-307B-449D-A4E7-E796C67B13E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserConsumer", "UserConsumer\UserConsumer.csproj", "{3E738A27-E98D-4882-90CE-FA1DE90A54DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{02A61565-307B-449D-A4E7-E796C67B13E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02A61565-307B-449D-A4E7-E796C67B13E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02A61565-307B-449D-A4E7-E796C67B13E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
