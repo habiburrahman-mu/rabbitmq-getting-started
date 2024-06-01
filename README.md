@@ -258,3 +258,6 @@ analytics has multiple bindings.
 - The server then receives the message from the request queue and process the message
 - Then it sends the reply to the default exchange / other exchange to route it through the reply queue.
 - Then the client receives it from the reply queue.
+- `reply_to` = Reply Queue name to indicate the queue to which server will send the response.
+- to uniquely identify the message the meta data with requests are send.
+- the metadata used usually are `message_id` and `correlation_id`.
