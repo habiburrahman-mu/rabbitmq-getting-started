@@ -248,3 +248,13 @@ analytics has multiple bindings.
 
 - **Hash Wildcard (#):**
   - queues with binding key `user.#` receives messages that begins with `user` and it doesn’t matter what else comes after it. Anything up to the maximum of 255 bytes.
+
+## Request-Reply Pattern
+
+![request-reply.png](docs-assets/request-reply.png)
+
+- Client will first declare a queue that it wants to receive response for this request.
+- Client sends request to the exchange, then the message is put into a queue.
+- The server then receives the message from the request queue and process the message
+- Then it sends the reply to the default exchange / other exchange to route it through the reply queue.
+- Then the client receives it from the reply queue.
