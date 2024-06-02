@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Text;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
+var replyQueue = channel.QueueDeclare(queue: "", exclusive: true);
+channel.QueueDeclare("request-queue", exclusive: false);
 
-const string ExchangeName = "routing-topic-exchange";
+var consumer = new EventingBasicConsumer(channel);
+consumer.Received += Consumer_Received;
 
-channel.ExchangeDeclare(
-    exchange: ExchangeName,
-    type: ExchangeType.Topic);
-
-var id = 0;
-
-while (true)
+void Consumer_Received(object? sender, BasicDeliverEventArgs e)
 {
-    var userPaymentsMessage = $"An European user paid something with {id}";
-
-    var userPaymentsMessageBody = Encoding.UTF8.GetBytes(userPaymentsMessage);
-    channel.BasicPublish(exchange: ExchangeName, routingKey: "user.europe.payments", body: userPaymentsMessageBody);
-    Console.WriteLine($"Published: {userPaymentsMessage}");
-
-    var businessOrderMessage = $"An European business ordered goods with {id}";
-
-    var businessOrderMessageBody = Encoding.UTF8.GetBytes(businessOrderMessage);
-    channel.BasicPublish(exchange: ExchangeName, routingKey: "business.europe.order", body: businessOrderMessageBody);
-    Console.WriteLine($"Published: {businessOrderMessage}");
-
-    id++;
-    Task.Delay(2000).Wait();
+    var body = e.Body.ToArray();
+    var message = Encoding.UTF8.GetString(body);
+    Console.WriteLine($"Reply received: {message}");
 }
+
+channel.BasicConsume(queue: replyQueue.QueueName, autoAck: true, consumer: consumer);
+
+var message = "Can I request a reply";
+var body = Encoding.UTF8.GetBytes(message);
+
+var properties = channel.CreateBasicProperties();
+properties.ReplyTo = replyQueue.QueueName;
+properties.CorrelationId = Guid.NewGuid().ToString();
+
+channel.BasicPublish("", "request-queue", properties, body);
+
+Console.WriteLine($"Sending Request: {properties.CorrelationId}");
+
+Console.WriteLine("Started Client");
+Console.ReadKey();

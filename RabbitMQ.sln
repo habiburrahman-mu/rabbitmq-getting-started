@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Producer\Producer.csproj", "{345064AF-818A-44C0-A944-5837FC001153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Producer\Client.csproj", "{345064AF-818A-44C0-A944-5837FC001153}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentConsumer", "PaymentConsumer\PaymentConsumer.csproj", "{34BAA152-0BCA-4195-8EA5-2C8797BA6404}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnalyticsConsumer", "AnalyticsConsumer\AnalyticsConsumer.csproj", "{02A61565-307B-449D-A4E7-E796C67B13E7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserConsumer", "UserConsumer\UserConsumer.csproj", "{3E738A27-E98D-4882-90CE-FA1DE90A54DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "UserConsumer\Server.csproj", "{3E738A27-E98D-4882-90CE-FA1DE90A54DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +17,6 @@ Global
 		{345064AF-818A-44C0-A944-5837FC001153}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{345064AF-818A-44C0-A944-5837FC001153}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{345064AF-818A-44C0-A944-5837FC001153}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34BAA152-0BCA-4195-8EA5-2C8797BA6404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34BAA152-0BCA-4195-8EA5-2C8797BA6404}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34BAA152-0BCA-4195-8EA5-2C8797BA6404}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34BAA152-0BCA-4195-8EA5-2C8797BA6404}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02A61565-307B-449D-A4E7-E796C67B13E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02A61565-307B-449D-A4E7-E796C67B13E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02A61565-307B-449D-A4E7-E796C67B13E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02A61565-307B-449D-A4E7-E796C67B13E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E738A27-E98D-4882-90CE-FA1DE90A54DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
