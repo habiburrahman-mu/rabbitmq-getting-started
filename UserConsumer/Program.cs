@@ -6,30 +6,22 @@ var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
 
-const string ExchangeName = "routing-topic-exchange";
-
-channel.ExchangeDeclare(
-    exchange: ExchangeName,
-    type: ExchangeType.Topic);
-
-var queueName = channel.QueueDeclare().QueueName;
-
-channel.QueueBind(
-    queue: queueName,
-    exchange: ExchangeName,
-    routingKey: "user.#"); // accepts message with anything coming after 'user.'
+channel.QueueDeclare("request-queue", exclusive: false);
 
 var consumer = new EventingBasicConsumer(channel);
 
-consumer.Received += OnReceivedMessage;
+consumer.Received += Consumer_Received;
 
-channel.BasicConsume(queue: queueName, autoAck: true, consumer: consumer);
-
-Console.ReadKey();
-
-void OnReceivedMessage(object? sender, BasicDeliverEventArgs ea)
+void Consumer_Received(object? sender, BasicDeliverEventArgs e)
 {
-    var body = ea.Body.ToArray();
-    var message = Encoding.UTF8.GetString(body);
-    Console.WriteLine($" [x] User Consumer Received {message}");
+    Console.WriteLine($"Received Request: {e.BasicProperties.CorrelationId}");
+
+    var replyMessage = $"This is your reply for {e.BasicProperties.CorrelationId}";
+    Task.Delay(2000).Wait();
+    var body = Encoding.UTF8.GetBytes(replyMessage);
+    channel.BasicPublish("", e.BasicProperties.ReplyTo, null, body);
 }
+
+channel.BasicConsume(queue: "request-queue", autoAck: true, consumer: consumer);
+
+Console.ReadLine();
