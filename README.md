@@ -5,6 +5,7 @@ Go to this specific branch to see the examples:
 - [Competing Consumer](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/competing-consumer)
 - [Pub Sub](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/pub-sub)
 - [Routing](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/routing)
+- [Request Reply](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/request-reply)
 
 ## Some common terminologies
 
@@ -248,3 +249,16 @@ analytics has multiple bindings.
 
 - **Hash Wildcard (#):**
   - queues with binding key `user.#` receives messages that begins with `user` and it doesn’t matter what else comes after it. Anything up to the maximum of 255 bytes.
+
+## Request-Reply Pattern
+
+![request-reply.png](docs-assets/request-reply.png)
+
+- Client will first declare a queue that it wants to receive response for this request.
+- Client sends request to the exchange, then the message is put into a queue.
+- The server then receives the message from the request queue and process the message
+- Then it sends the reply to the default exchange / other exchange to route it through the reply queue.
+- Then the client receives it from the reply queue.
+- `reply_to` = Reply Queue name to indicate the queue to which server will send the response.
+- to uniquely identify the message the meta data with requests are send.
+- the metadata used usually are `message_id` and `correlation_id`.
