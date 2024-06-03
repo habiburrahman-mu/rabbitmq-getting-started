@@ -269,3 +269,18 @@ analytics has multiple bindings.
 
 - The exchange to exchange binding is useful when messages need to be saved for queues that are automatically deleted, or when load balancing topics within a single broker.
 - When sending the same messages to different exchange types, exchange to exchange binding is the best way forward.
+
+## Header Exchange
+
+- uses arguments with headers and optional values to route messages.
+- Identical to topic exchange, but here routing are based on header values rather than routing keys.
+- `x-match` indicates whether all headers must match or only one.
+- The `x-match` property has two possible values: `any` and `all`, with `all` being the default.
+- A value of `all` indicates that all header pairs (key, value) must match.
+- `any` indicates that at least one pair must match.
+- Instead of a string, headers can be built with a larger range of data types, such as integers or hashes.
+- For the header RabbitMQ exchange type, `amq.headers` is the default topic exchange that AMQP brokers must supply.
+
+![header-exchange.png](docs-assets/header-exchange.png)
+
+![header-exchange-2.png](docs-assets/header-exchange-2.png)
