@@ -262,3 +262,10 @@ analytics has multiple bindings.
 - `reply_to` = Reply Queue name to indicate the queue to which server will send the response.
 - to uniquely identify the message the meta data with requests are send.
 - the metadata used usually are `message_id` and `correlation_id`.
+
+## Exchange to Exchange Routing
+
+![exchange-to-exchange.png](docs-assets/exchange-to-exchange.png)
+
+- The exchange to exchange binding is useful when messages need to be saved for queues that are automatically deleted, or when load balancing topics within a single broker.
+- When sending the same messages to different exchange types, exchange to exchange binding is the best way forward.
