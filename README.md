@@ -287,3 +287,19 @@ analytics has multiple bindings.
 ![header-exchange.png](docs-assets/header-exchange.png)
 
 ![header-exchange-2.png](docs-assets/header-exchange-2.png)
+
+## Consistent Hashing Exchange
+
+- Have to enable this exchange manually
+- The mail goal is to distribute the messages possibly equally come to this exchange to the queues connected to this exchange.
+- RabbitMQ Consistent Hash Exchange Type Plugin.
+
+    ```bash
+    rabbitmq-plugins enable rabbitmq_consistent_hash_exchange
+    ```
+
+- After Enabling Consistent Hash Exchange Type Below Exchange option will be Available to Use.
+
+    ![image-12.png](docs-assets/consistent-hashing-exchange.png)
+
+*Note:* https://tutexchange.com/what-is-consistent-hashing-exchange-in-rabbitmq/
