@@ -7,6 +7,9 @@ Go to this specific branch to see the examples:
 - [Routing](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/routing)
 - [Request Reply](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/request-reply)
 
+## Declaration
+The materials in this repository, including notes and code, are compiled from a variety of reputable internet sources.
+
 ## Some common terminologies
 
 - Publisher
