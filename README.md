@@ -297,7 +297,6 @@ analytics has multiple bindings.
     ```bash
     rabbitmq-plugins enable rabbitmq_consistent_hash_exchange
     ```
-
 - After Enabling Consistent Hash Exchange Type Below Exchange option will be Available to Use.
 
     ![image-12.png](docs-assets/consistent-hashing-exchange.png)
