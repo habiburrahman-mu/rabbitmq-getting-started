@@ -316,8 +316,13 @@ channel.QueueBind("letterbox", "headersExchange", "", bindingArguments);
     ```bash
     rabbitmq-plugins enable rabbitmq_consistent_hash_exchange
     ```
+
 - After Enabling Consistent Hash Exchange Type Below Exchange option will be Available to Use.
 
     ![image-12.png](docs-assets/consistent-hashing-exchange.png)
+
+```csharp
+channel.ExchangeDeclare(exchange: "hashingExchange", type: "x-consistent-hash");
+```
 
 *Note:* https://tutexchange.com/what-is-consistent-hashing-exchange-in-rabbitmq/
