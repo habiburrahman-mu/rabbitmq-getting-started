@@ -288,6 +288,25 @@ analytics has multiple bindings.
 
 ![header-exchange-2.png](docs-assets/header-exchange-2.png)
 
+```csharp
+// Publisher
+var properties = channel.CreateBasicProperties();
+properties.Headers = new Dictionary<string, object>
+{
+    {"name", "test"}
+};
+channel.BasicPublish(exchange: "headersExchange", routingKey: "", properties, body: body);
+
+// Consumer
+var bindingArguments = new Dictionary<string, object>
+{
+    {"x-match", "any"},
+    {"name", "test"},
+    {"age", "21"},
+};
+channel.QueueBind("letterbox", "headersExchange", "", bindingArguments);
+```
+
 ## Consistent Hashing Exchange
 
 - Have to enable this exchange manually
