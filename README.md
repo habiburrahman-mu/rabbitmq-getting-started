@@ -7,6 +7,9 @@ Go to this specific branch to see the examples:
 - [Routing](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/routing)
 - [Request Reply](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/request-reply)
 
+## Declaration
+The materials in this repository, including notes and code, are compiled from a variety of reputable internet sources.
+
 ## Some common terminologies
 
 - Publisher
@@ -262,3 +265,64 @@ analytics has multiple bindings.
 - `reply_to` = Reply Queue name to indicate the queue to which server will send the response.
 - to uniquely identify the message the meta data with requests are send.
 - the metadata used usually are `message_id` and `correlation_id`.
+
+## Exchange to Exchange Routing
+
+![exchange-to-exchange.png](docs-assets/exchange-to-exchange.png)
+
+- The exchange to exchange binding is useful when messages need to be saved for queues that are automatically deleted, or when load balancing topics within a single broker.
+- When sending the same messages to different exchange types, exchange to exchange binding is the best way forward.
+
+## Header Exchange
+
+- uses arguments with headers and optional values to route messages.
+- Identical to topic exchange, but here routing are based on header values rather than routing keys.
+- `x-match` indicates whether all headers must match or only one.
+- The `x-match` property has two possible values: `any` and `all`, with `all` being the default.
+- A value of `all` indicates that all header pairs (key, value) must match.
+- `any` indicates that at least one pair must match.
+- Instead of a string, headers can be built with a larger range of data types, such as integers or hashes.
+- For the header RabbitMQ exchange type, `amq.headers` is the default topic exchange that AMQP brokers must supply.
+
+![header-exchange.png](docs-assets/header-exchange.png)
+
+![header-exchange-2.png](docs-assets/header-exchange-2.png)
+
+```csharp
+// Publisher
+var properties = channel.CreateBasicProperties();
+properties.Headers = new Dictionary<string, object>
+{
+    {"name", "test"}
+};
+channel.BasicPublish(exchange: "headersExchange", routingKey: "", properties, body: body);
+
+// Consumer
+var bindingArguments = new Dictionary<string, object>
+{
+    {"x-match", "any"},
+    {"name", "test"},
+    {"age", "21"},
+};
+channel.QueueBind("letterbox", "headersExchange", "", bindingArguments);
+```
+
+## Consistent Hashing Exchange
+
+- Have to enable this exchange manually
+- The mail goal is to distribute the messages possibly equally come to this exchange to the queues connected to this exchange.
+- RabbitMQ Consistent Hash Exchange Type Plugin.
+
+    ```bash
+    rabbitmq-plugins enable rabbitmq_consistent_hash_exchange
+    ```
+
+- After Enabling Consistent Hash Exchange Type Below Exchange option will be Available to Use.
+
+    ![image-12.png](docs-assets/consistent-hashing-exchange.png)
+
+```csharp
+channel.ExchangeDeclare(exchange: "hashingExchange", type: "x-consistent-hash");
+```
+
+*Note:* https://tutexchange.com/what-is-consistent-hashing-exchange-in-rabbitmq/
