@@ -5,21 +5,33 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exchange-Exchange", "Exchange-Exchange", "{3B65194E-BA31-4E20-864A-64CAD7A95B6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Exchange-Exchange\Consumer\Consumer.csproj", "{4A747067-8C1B-4855-9474-11114A900F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Exchange-Exchange\Consumer\Consumer.csproj", "{4A747067-8C1B-4855-9474-11114A900F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer", "Exchange-Exchange\Producer\Producer.csproj", "{5EEFF9CC-18FB-40E9-9229-BD5199130469}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Exchange-Exchange\Producer\Producer.csproj", "{5EEFF9CC-18FB-40E9-9229-BD5199130469}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Headers-Exchange", "Headers-Exchange", "{77FC4E4A-AD8E-430A-A220-D30CF39B664A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer", "Headers-Exchange\Producer\Producer.csproj", "{EEE5081F-6257-495C-9928-A15D249D413E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Headers-Exchange\Producer\Producer.csproj", "{EEE5081F-6257-495C-9928-A15D249D413E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Headers-Exchange\Consumer\Consumer.csproj", "{2285423C-E970-469D-995C-5B87E384563C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Headers-Exchange\Consumer\Consumer.csproj", "{2285423C-E970-469D-995C-5B87E384563C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consistent-Hashing-Exchange", "Consistent-Hashing-Exchange", "{106B65CB-DF17-44A9-BF83-FFFA9D469054}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Consistent-Hashing-Exchange\Consumer\Consumer.csproj", "{9A0EA104-583A-43B4-B310-7AA134635085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Consistent-Hashing-Exchange\Consumer\Consumer.csproj", "{9A0EA104-583A-43B4-B310-7AA134635085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer", "Consistent-Hashing-Exchange\Producer\Producer.csproj", "{99AC4D03-E191-4FF7-A6AD-7B2C2FB6684A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Consistent-Hashing-Exchange\Producer\Producer.csproj", "{99AC4D03-E191-4FF7-A6AD-7B2C2FB6684A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alternate-Exchange", "Alternate-Exchange", "{FA314F9C-24B6-4FDF-8949-295DC4B23A82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Alternate-Exchange\Consumer\Consumer.csproj", "{7061BECC-369C-4936-AAB5-BC37176344F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Alternate-Exchange\Producer\Producer.csproj", "{55DA52C3-87C2-4651-BFE5-0C3B314802D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dead-Letter-Exchange", "Dead-Letter-Exchange", "{58A81960-7719-49B2-9ACE-ABC31DB77002}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Producer", "Dead-Letter-Exchange\Producer\Producer.csproj", "{81F811A8-9E60-40BD-AD99-F8464F004327}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consumer", "Dead-Letter-Exchange\Consumer\Consumer.csproj", "{652F5AEA-575F-477A-9A22-766B0FF4765E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +63,22 @@ Global
 		{99AC4D03-E191-4FF7-A6AD-7B2C2FB6684A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99AC4D03-E191-4FF7-A6AD-7B2C2FB6684A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99AC4D03-E191-4FF7-A6AD-7B2C2FB6684A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7061BECC-369C-4936-AAB5-BC37176344F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7061BECC-369C-4936-AAB5-BC37176344F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7061BECC-369C-4936-AAB5-BC37176344F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7061BECC-369C-4936-AAB5-BC37176344F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DA52C3-87C2-4651-BFE5-0C3B314802D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DA52C3-87C2-4651-BFE5-0C3B314802D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DA52C3-87C2-4651-BFE5-0C3B314802D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DA52C3-87C2-4651-BFE5-0C3B314802D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81F811A8-9E60-40BD-AD99-F8464F004327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F811A8-9E60-40BD-AD99-F8464F004327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F811A8-9E60-40BD-AD99-F8464F004327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F811A8-9E60-40BD-AD99-F8464F004327}.Release|Any CPU.Build.0 = Release|Any CPU
+		{652F5AEA-575F-477A-9A22-766B0FF4765E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652F5AEA-575F-477A-9A22-766B0FF4765E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652F5AEA-575F-477A-9A22-766B0FF4765E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652F5AEA-575F-477A-9A22-766B0FF4765E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +90,10 @@ Global
 		{2285423C-E970-469D-995C-5B87E384563C} = {77FC4E4A-AD8E-430A-A220-D30CF39B664A}
 		{9A0EA104-583A-43B4-B310-7AA134635085} = {106B65CB-DF17-44A9-BF83-FFFA9D469054}
 		{99AC4D03-E191-4FF7-A6AD-7B2C2FB6684A} = {106B65CB-DF17-44A9-BF83-FFFA9D469054}
+		{7061BECC-369C-4936-AAB5-BC37176344F3} = {FA314F9C-24B6-4FDF-8949-295DC4B23A82}
+		{55DA52C3-87C2-4651-BFE5-0C3B314802D2} = {FA314F9C-24B6-4FDF-8949-295DC4B23A82}
+		{81F811A8-9E60-40BD-AD99-F8464F004327} = {58A81960-7719-49B2-9ACE-ABC31DB77002}
+		{652F5AEA-575F-477A-9A22-766B0FF4765E} = {58A81960-7719-49B2-9ACE-ABC31DB77002}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD6736E1-BF2D-4F93-B2A0-355FF0EBD79E}
