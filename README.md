@@ -325,4 +325,23 @@ channel.QueueBind("letterbox", "headersExchange", "", bindingArguments);
 channel.ExchangeDeclare(exchange: "hashingExchange", type: "x-consistent-hash");
 ```
 
-*Note:* https://tutexchange.com/what-is-consistent-hashing-exchange-in-rabbitmq/
+*Note:* <https://tutexchange.com/what-is-consistent-hashing-exchange-in-rabbitmq/>
+
+## Alternate Exchange
+
+![alternate-exchange.png](docs-assets/alternate-exchange.png)
+
+- Exchange to handle un-routable messages.
+- Common example we might see that it is used as Fanout exchange and consumed by a Logging Service.
+
+## Dead Letter Exchange
+
+![dead-letter-exchange.png](docs-assets/dead-letter-exchange.png)
+
+- When we declare a queue, we can declare an associated Dead Letter Exchange with it.
+- Any message routed to that queue but cannot be delivered to the consumer or expires for some reason can be then sent to the dead letter exchange.
+
+***Note: Difference between alternate and dead letter exchange is that***
+
+- If a message is not routable then it goes to alternate exchange
+- If a message is routable and expired or cannot be delivered to consumers then it goes to the dead letter exchange.
