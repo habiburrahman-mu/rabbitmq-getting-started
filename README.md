@@ -345,3 +345,12 @@ channel.ExchangeDeclare(exchange: "hashingExchange", type: "x-consistent-hash");
 
 - If a message is not routable then it goes to alternate exchange
 - If a message is routable and expired or cannot be delivered to consumers then it goes to the dead letter exchange.
+  
+## Some other options for controlling queues
+
+- auto delete - delete queue when no longer needed.
+- auto expire - delete queue after period of unused time `x-expires`
+- auto expire message  - expire messages if they sit on a queue for long time `x-message-ttl`
+- max length queue  - set max number of messages allowed on queue as `x-max-length`
+- exclusive  - only allows one consumer at a time if `true`
+- dead letter exchange - configure dead letter exchange for queue by `x-dead-letter-exchange`
