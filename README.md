@@ -6,8 +6,10 @@ Go to this specific branch to see the examples:
 - [Pub Sub](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/pub-sub)
 - [Routing](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/routing)
 - [Request Reply](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/request-reply)
+- [Exchanges](https://github.com/habiburrahman-mu/rabbitmq-getting-started/tree/exchanges)
 
 ## Declaration
+
 The materials in this repository, including notes and code, are compiled from a variety of reputable internet sources.
 
 ## Some common terminologies
@@ -26,7 +28,6 @@ RabbitMq uses these protocols
 - STOMP
 
     These are actually the application layer protocols
-
 
 TLS is a presentation layer protocol.
 
@@ -59,7 +60,7 @@ In order to make a connection with RabbitMQ, first tcp 3-way handshake will happ
 
 ## Channel
 
-You can create multiple channel on single connection. 
+You can create multiple channel on single connection.
 
 Connection can be multiplexed.
 
@@ -70,28 +71,28 @@ While creating channels it involves 2 TCP packets.
 Brains behind RabbitMQ. It can be of various types.
 
 - **Direct**:
-    - Bind a queue to the exchange. While publishing message → requires the routing/ binding key.
+  - Bind a queue to the exchange. While publishing message → requires the routing/ binding key.
 - **Default Exchange**:
-    - It will create a queue automatically and queue name will be same as the routing key.
+  - It will create a queue automatically and queue name will be same as the routing key.
     - Binding: Routing key = queue name
 - **Topic:**
-    - Message sent to a topic can’t have an arbitrary routing key - it must be a list of words
+  - Message sent to a topic can’t have an arbitrary routing key - it must be a list of words
     - * (star) can substitute for exactly one word
     - \# (hash) can substitute for zero or more words
     - [https://www.rabbitmq.com/tutorials/tutorial-five-dotnet.html](https://www.rabbitmq.com/tutorials/tutorial-five-dotnet.html)
 - **Fanout Exchange:**
-    - Routes messages to all the queues that are bound to it. It is like broadcasting the messages.
-    - In this type of exchange, the routing key is not important. A message sent to a fanout exchange will go to all queues that are bound to it, irrespective of routing keys.
+  - Routes messages to all the queues that are bound to it. It is like broadcasting the messages.
+    - In this type of exchange, the routing key is not important. A message sent to a faut exchange will go to all queues that are bound to it, irrespective of routing keys.
 - **Headers Exchange:**
-    - Messages are routed based on arguments containing headers and optional values.
+  - Messages are routed based on arguments containing headers and optional values.
     - Headers exchanges ignore the routing key attribute.
     - A message is considered matching if the value of the header equals the value specified upon binding.
 - **Dead Letter Exchange:**
-    - When a message can't be routed, is rejected, or expires, it can be sent to a DLX.
+  - When a message can't be routed, is rejected, or expires, it can be sent to a DLX.
     - This is an exchange where these 'failed' messages are sent, providing a way to handle them differently from the normally processed messages.
 - **Alternate Exchange:**
-    - If a message can't be routed to any queue (i.e., if there are no queues bound to the exchange, or none match the routing key), it can be sent to an AE.
-    - This provides a safety net for messages that can't be routed properly.
+  - If a message can't be routed to any queue (i.e., if there are no queues bound to the exchange, or none match the routing key), it can be sent to an AE.
+  - This provides a safety net for messages that can't be routed properly.
 
 ### Routing Key
 
@@ -117,16 +118,16 @@ RabbitMQ handles multiple consumers for a single queue by distributing messages 
 ## Acknowledgement
 
 - **Auto Acknowledgement**
-    - This means that a message is considered to be successfully delivered immediately after it is sent.
-    - This does not guarantee that the message has been successfully received or processed by the consumer.
-    - It only guarantees that the broker successfully sent it.
-    - If the consumer crashes during processing, the message will be lost.
+  - This means that a message is considered to be successfully delivered immediately after it is sent.
+  - This does not guarantee that the message has been successfully received or processed by the consumer.
+  - It only guarantees that the broker successfully sent it.
+  - If the consumer crashes during processing, the message will be lost.
 - **Manual Acknowledgement**
-    - With manual acknowledgements, the consumer sends an acknowledgement back to the broker after it has finished processing the message, to indicate that the message has been successfully processed and can be deleted from the queue.
-    - If the consumer crashes before sending the acknowledgement, RabbitMQ will understand that a message wasn't processed fully and will re-queue it.
-    - If another consumer is available, it will then quickly redeliver the message to another consumer. That way you can be sure that no message is lost, even if the workers occasionally die.
-    - There aren't any message timeouts; RabbitMQ will redeliver the message only when the consumer connection dies. It's fine even if processing a message takes a very, very long time.
-    - We have to maintain the data idempotency and consistency while using manual acknowledgement.
+  - With manual acknowledgements, the consumer sends an acknowledgement back to the broker after it has finished processing the message, to indicate that the message has been successfully processed and can be deleted from the queue.
+  - If the consumer crashes before sending the acknowledgement, RabbitMQ will understand that a message wasn't processed fully and will re-queue it.
+  - If another consumer is available, it will then quickly redeliver the message to another consumer. That way you can be sure that no message is lost, even if the workers occasionally die.
+  - There aren't any message timeouts; RabbitMQ will redeliver the message only when the consumer connection dies. It's fine even if processing a message takes a very, very long time.
+  - We have to maintain the data idempotency and consistency while using manual acknowledgement.
 
 **Reject Acknowledgement**
 
@@ -136,27 +137,27 @@ If the message is re-queued, it can be delivered to the same consumer or a diffe
 
 To avoid such problems, RabbitMQ provides a feature called "***Dead Letter Exchanges***". When a message is rejected, it's sent to a Dead Letter Exchange, where it can be inspected and handled separately. This is a better approach than simply discarding the message or continuously re-queuing it.
 
-## Handle RabbitMQ server crash or connection lost!
+## Handle RabbitMQ server crash or connection lost
 
 ### Durable Queues
 
-Durable queues are queues that survive broker restarts. 
+Durable queues are queues that survive broker restarts.
 
-While all the above-discussed contents of a queue (messages, consumers, etc.) are always held in memory, for durable queues, RabbitMQ uses a write-ahead log to persist parts of its state to disk. 
+While all the above-discussed contents of a queue (messages, consumers, etc.) are always held in memory, for durable queues, RabbitMQ uses a write-ahead log to persist parts of its state to disk.
 
-This allows it to recover state and messages in the face of failures. 
+This allows it to recover state and messages in the face of failures.
 
-When a message is published to a durable queue, it's written to disk. 
+When a message is published to a durable queue, it's written to disk.
 
-It's worth noting that message persistence doesn't fully guarantee that a message won't be lost; although it's a strong guarantee, messages can still be lost in the event of a crash while the message is in transit. 
+It's worth noting that message persistence doesn't fully guarantee that a message won't be lost; although it's a strong guarantee, messages can still be lost in the event of a crash while the message is in transit.
 
 To ensure that messages aren't lost, both the queue and the message must be marked as durable.
 
 ### Persistent Message
 
-A persistent message is a message that is stored to disk as soon as it enters the queue. 
+A persistent message is a message that is stored to disk as soon as it enters the queue.
 
-It remains stored until it's consumed or until the queue is purged. 
+It remains stored until it's consumed or until the queue is purged.
 
 By marking messages as persistent, we can ensure that they won't be lost even in the event of a broker restart or system crash.
 
@@ -215,7 +216,7 @@ channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
 - bind queues to this fanout exchange
 - all queues of fanout exchange will get these messages
 - Producer does not need to define or know about the queues, it will interact with the exchange
-    
+
     ```csharp
     channel.ExchangeDeclare(exchange: "pubsub", type: ExchangeType.Fanout);
     
